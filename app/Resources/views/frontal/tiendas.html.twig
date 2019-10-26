@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block titulo %}Tiendas - Tartas y Caramelo{% endblock %}
+{% block contenido %}
+
+<div class="container col-12 align-items-center">
+
+
+
+{% if sitio== 'Madrid' or sitio=='todos'%}
+<div class="row">
+      <!-- Map Column -->
+      <div class="col-8">
+        <!-- Embedded Google Map -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48682.91464993095!2d-3.7694213578530524!3d40.30501552741348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42209a1ebb8201%3A0x20c3fa90b7e442fc!2sGetafe%2C%20Madrid!5e0!3m2!1ses!2ses!4v1571902866135!5m2!1ses!2ses" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+      </div>
+      <!-- Contact Details Column -->
+      <div class="col-3">
+        <h3>Contact Details</h3>
+        <p>
+          3481 Melrose Place
+          <br>Beverly Hills, CA 90210
+          <br>
+        </p>
+        <p>
+          <abbr title="Phone">P</abbr>: (123) 456-7890
+        </p>
+        <p>
+          <abbr title="Email">E</abbr>:
+          <a href="mailto:name@example.com">name@example.com
+          </a>
+        </p>
+        <p>
+          <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+        </p>
+      </div>
+    </div>
+    {% endif %}
+{% if sitio== 'Brasil' or sitio=='todos'%}
+<div class="row">
+      <!-- Map Column -->
+      <div class="col-8">
+        <!-- Embedded Google Map -->
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117888.40713913753!2d-47.48451083645678!3d-22.578627461477495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c88055b6df0dc3%3A0x1b0ef5f339809ecd!2sLimeira%2C%20Estado%20de%20S%C3%A3o%20Paulo%2C%20Brasil!5e0!3m2!1ses!2ses!4v1571902825484!5m2!1ses!2ses" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>      </div>
+      <!-- Contact Details Column -->
+      <div class="col-3">
+        <h3>Contact Details</h3>
+        <p>
+          3481 Melrose Place
+          <br>Beverly Hills, CA 90210
+          <br>
+        </p>
+        <p>
+          <abbr title="Phone">P</abbr>: (123) 456-7890
+        </p>
+        <p>
+          <abbr title="Email">E</abbr>:
+          <a href="mailto:name@example.com">name@example.com
+          </a>
+        </p>
+        <p>
+          <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+        </p>
+      </div>
+    </div>
+    {% endif %}
+    </div>
+
+
+{% endblock %}
