@@ -23,10 +23,22 @@ class GestionTartasController extends Controller
     public function nuevaTartaAction(Request $request)
     {
         $tarta = new Tartas(); 
-        $formBuilder = $this->createFormBuilder($tarta);
-
-        $form = $formBuilder->getForm();
         $form = $this->createForm(TartasType::class, $tarta);
+        
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $tarta = $form->getData();
+            $tarta -> setIgredientes("");
+            $tarta -> setFoto("");
+            $tarta -> setTop(0);
+            $tarta -> setFechaCreacion(new \DateTime());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tarta);
+            $em->flush();
+            return $this->redirectToRoute('tarta',array('id' => $tarta->getId()));
+        }
+    
         return $this->render('getionTartas/nuevatarta.html.twig', array('form' => $form->createView()));
     }
 }
