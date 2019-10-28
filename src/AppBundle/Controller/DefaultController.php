@@ -7,17 +7,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 use AppBundle\Entity\Tartas;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{pagina}", name="homepage")
      */
-    public function homeAction(Request $request)
-    {
-        $tartasRepository = $this->getDoctrine()->getRepository(Tartas::class);
-        $tartas = $tartasRepository->findByTop(0);
-        return $this->render('frontal/index.html.twig', array('tartas' => $tartas));
+    public function homeAction(Request $request, $pagina=1)
+    {   
+        //$numTartas=3;
+        $tartaRepository = $this->getDoctrine()->getRepository(Tartas::class);
+        $tartas= $tartaRepository->paginaTartas($pagina);
+        return $this->render('frontal/index.html.twig', array ('tartas' => $tartas, 'paginaActual'=>$pagina));
     }
     /**
      * @Route("/nosotros", name="nosotros")

@@ -82,7 +82,7 @@
     <div class="col-lg-4 col-sm-6 portfolio-item">
       <div class="card h-100">
         <a href="{{path('tarta', {'id':tarta.id})}}"
-          ><img class="card-img-top" src="http://placehold.it/700x400" alt=""
+          ><img class="card-img-top home" src={% if tarta.foto > 0 %}"{{asset(tartaImg~tarta.foto)}}" {% else %} http://127.0.0.1:8000/img/Logo-Lateral-site.png {% endif %} alt=""
         /></a>
         <div class="card-body">
           <h4 class="card-title">
@@ -95,5 +95,30 @@
     {% endfor %}
   </div>
 </div>
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center">
+    {% if paginaActual>1 %}
+      <li class="page-item">
+        <a class="page-link" href="{{path('homepage',{pagina:paginaActual-1<1?1:paginaActual-1})}}" aria-label="Anterior">Anterior
+        </a>
+      </li>
+    {% endif %}
+      {% for i in 1..3 %}
+      <li class="page-item">
+        <a class="page-link" href="{{path('homepage',{pagina:i})}}">{{i}}</a>
+      </li>
+    {% endfor %}
+    
+    {% if paginaActual<3 %}
+      <li class="page-item">
+        <a class="page-link" href="{{path('homepage',{pagina:paginaActual+1<=3?paginaActual+1:paginaActual})}}" aria-label="Posterior">Posterior
+        </a>
+      </li>
+    {% endif %}
+    </ul>
+
+  </div>
+  <!-- /.container -->
 
 {% endblock %}

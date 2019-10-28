@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class TartasRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function paginaTartas($pagina=1, $numTartas=3){
+        $query = $this->createQueryBuilder('t')
+        ->where('t.top = 0')
+        ->setFirstResult( $numTartas*($pagina-1)  )
+        ->setMaxResults( $numTartas)
+        ->getQuery();
+        return $query->getResult();
+    }
 }

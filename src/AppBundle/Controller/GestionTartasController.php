@@ -28,7 +28,13 @@ class GestionTartasController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $tarta = $form->getData();
-            $tarta -> setFoto("");
+            $fotoFile = $tarta->getFoto();
+            $fileName = $this->generateUniqueFileName().'.'.$fotoFile->guessExtension();
+            $fotoFile->move(
+                $this->getParameter('tartaImg_directory'),
+                $fileName
+            );
+            $tarta -> setFoto($fileName);
             $tarta -> setFechaCreacion(new \DateTime());
 
             $em = $this->getDoctrine()->getManager();
@@ -39,4 +45,13 @@ class GestionTartasController extends Controller
     
         return $this->render('getionTartas/nuevatarta.html.twig', array('form' => $form->createView()));
     }
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
+    }
+
+    
 }
