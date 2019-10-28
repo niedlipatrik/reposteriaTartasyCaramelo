@@ -28,9 +28,7 @@ class GestionTartasController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $tarta = $form->getData();
-            $tarta -> setIgredientes("");
             $tarta -> setFoto("");
-            $tarta -> setTop(0);
             $tarta -> setFechaCreacion(new \DateTime());
 
             $em = $this->getDoctrine()->getManager();
